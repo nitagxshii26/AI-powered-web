@@ -2,7 +2,6 @@
   "name": "ai-flashcard-generator",
   "version": "1.0.0",
   "description": "Study flashcard generator using OpenRouter and Supabase",
-  "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "node server.js"
