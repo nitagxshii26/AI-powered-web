@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cards - AI Flashcard Generator</title>
+    <meta name="description" content="Review your saved AI-generated flashcards.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="logo">BrainSpark ✨</div>
+        <div class="nav-links">
+            <a href="index.html">Generate</a>
+            <a href="mycards.html" class="active">My Cards</a>
+        </div>
+    </nav>
+
+    <main class="container my-cards-container">
+        <header class="hero">
+            <h1>Your <span class="gradient-text">Study Deck</span></h1>
+            <p>Review the flashcards you've saved from your reading materials.</p>
+        </header>
+
+        <div id="loadingCards" class="loading-state hidden">
+            <span class="loader-large"></span>
+            <p>Loading your study materials...</p>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+            <div class="empty-icon">📚</div>
+            <h2>No flashcards yet</h2>
+            <p>Go back to the Generator to create and save some flashcards!</p>
+            <a href="index.html" class="btn-primary btn-link">Generate Cards</a>
+        </div>
+
+        <section id="savedCardsGrid" class="cards-grid">
+            <!-- Cards will be injected here dynamically -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

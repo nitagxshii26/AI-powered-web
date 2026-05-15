@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Flashcard Generator</title>
+    <meta name="description" content="Generate study flashcards from any text using AI.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="logo">BrainSpark ✨</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Generate</a>
+            <a href="mycards.html">My Cards</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Transform Text into <span class="gradient-text">Knowledge</span></h1>
+            <p>Paste your study material below and let AI create interactive flashcards for you.</p>
+        </header>
+
+        <section class="input-section glass-card">
+            <textarea id="textInput" placeholder="Paste your textbook excerpt, notes, or article here... (max 2000 characters)"></textarea>
+            <button id="generateBtn" class="btn-primary">
+                <span class="btn-text">Generate Flashcards</span>
+                <span class="loader hidden"></span>
+            </button>
+            <div id="errorMsg" class="error-msg hidden"></div>
+        </section>
+
+        <section id="flashcardSection" class="flashcard-section hidden">
+            <div class="section-header">
+                <h2>Your Flashcards</h2>
+                <span class="card-counter" id="cardCounter">1 / 5</span>
+            </div>
+            
+            <div class="flashcard-container">
+                <div id="flashcard" class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="card-label">Question</div>
+                            <p id="cardQuestion">What is the mitochondria?</p>
+                            <div class="flip-hint">Click to flip</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="card-label answer-label">Answer</div>
+                            <p id="cardAnswer">The powerhouse of the cell.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn" class="btn-secondary" disabled>Previous</button>
+                <button id="saveBtn" class="btn-primary">Save to My Cards</button>
+                <button id="nextBtn" class="btn-secondary">Next</button>
+            </div>
+            <div id="saveSuccess" class="success-msg hidden">Card saved successfully!</div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
