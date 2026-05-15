@@ -19,6 +19,11 @@ app.use(express.json());
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
+// Explicit fallback for root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Route the API path to the serverless function handler
 app.post('/api/generate', (req, res) => {
     handler(req, res);

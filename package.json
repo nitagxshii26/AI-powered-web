@@ -4,7 +4,7 @@
   "description": "Study flashcard generator using OpenRouter and Supabase",
   "type": "module",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node local-dev.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
