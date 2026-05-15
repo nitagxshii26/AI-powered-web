@@ -4,9 +4,9 @@
 const SUPABASE_URL = 'https://ovucqztgxnfwdvgxglmi.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_iVltdSB8DzhDCvmYjD7NWQ_6Dg1uGQD';
 
-let supabase;
-if (typeof supabase !== 'undefined') {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let supabaseClient;
+if (typeof window.supabase !== 'undefined') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
 // Global State
@@ -139,7 +139,7 @@ function showNextCard() {
 }
 
 async function saveCurrentCard() {
-    if (!supabase) {
+    if (!supabaseClient) {
         showError("Supabase is not initialized. Please set credentials in script.js.");
         return;
     }
@@ -149,7 +149,7 @@ async function saveCurrentCard() {
     saveBtn.textContent = "Saving...";
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('flashcards')
             .insert([
                 {
@@ -208,7 +208,7 @@ async function initMyCardsPage() {
     const emptyState = document.getElementById('emptyState');
     const cardsGrid = document.getElementById('savedCardsGrid');
 
-    if (!supabase) {
+    if (!supabaseClient) {
         loadingState.classList.add('hidden');
         emptyState.classList.remove('hidden');
         emptyState.querySelector('h2').textContent = "Supabase not configured";
@@ -217,7 +217,7 @@ async function initMyCardsPage() {
     }
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('flashcards')
             .select('*')
             .order('created_at', { ascending: false });
