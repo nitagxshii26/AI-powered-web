@@ -75,14 +75,15 @@ async function handleGenerate() {
         });
 
         if (!response.ok) {
-            throw new Error(`API Error: ${response.status}`);
+            let errMsg = `API Error: ${response.status}`;
+            try {
+                const errData = await response.json();
+                if (errData.error) errMsg = errData.error;
+            } catch (e) {}
+            throw new Error(errMsg);
         }
 
         const data = await response.json();
-
-        if (data.error) {
-            throw new Error(data.error);
-        }
 
         if (data.flashcards && data.flashcards.length > 0) {
             currentFlashcards = data.flashcards;

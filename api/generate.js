@@ -40,7 +40,7 @@ JSON format:
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'google/gemini-pro', // Fallback to a fast/good model on OpenRouter, can be any model you prefer e.g. openai/gpt-3.5-turbo
+                model: 'meta-llama/llama-3-8b-instruct:free', // Free model guaranteed to work without credits
                 messages: [
                     { role: 'user', content: prompt }
                 ]
@@ -50,7 +50,7 @@ JSON format:
         if (!response.ok) {
             const errorData = await response.text();
             console.error("OpenRouter Error:", errorData);
-            return res.status(response.status).json({ error: 'Failed to fetch from OpenRouter' });
+            return res.status(response.status).json({ error: `OpenRouter returned an error: ${errorData}` });
         }
 
         const data = await response.json();
