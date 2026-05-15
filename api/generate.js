@@ -54,6 +54,12 @@ JSON format:
         }
 
         const data = await response.json();
+        
+        if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+            console.error("Unexpected OpenRouter response:", data);
+            throw new Error("Invalid response from OpenRouter API.");
+        }
+        
         const content = data.choices[0].message.content;
 
         // Try to parse the JSON
